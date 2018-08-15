@@ -18,8 +18,3 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-//BACKEND
-// Route::get('admin', function() {
-//     return view('backend.dashboard');
-// });
