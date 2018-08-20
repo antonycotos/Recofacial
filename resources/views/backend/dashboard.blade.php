@@ -1,4 +1,6 @@
+
 @extends('backend.layout')
+@extends('backend.navigation')
 @section('content')
 <p>
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

@@ -19,6 +19,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Rutas para la Administracion
 Route::get('/backend',function(){
 	return view ('backend.dashboard');
 });
+
+Route::resource('/nationality','backend\NationalityController');
+//Route::resource('biophoto','Backend\NationalityController');
+//Route::resource('people','Backend\NationalityController');
+
