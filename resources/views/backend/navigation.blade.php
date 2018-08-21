@@ -34,18 +34,21 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links{{-- {{ route('nationality.index') }} --}} -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Nacionalidad</span></a></li>
+        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
+
+        <li><a href="{{ route('nationalities.index')}}"><i class="fa fa-vcard-o"></i> <span>Nacionalidad</span></a></li>
+        <li><a href="{{ route('biophotos.index')}}"><i class="fa fa-camera-retro fa-lg"></i> <span>Biophoto</span></a></li>
+        <li><a href="{{ route('people.index')}}"><i class="fa fa-user-circle-o"></i> <span>Trabajador</span></a></li>
+
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#"><i class="fa fa-link"></i> <span>Registro de Asistencia</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">Entrada</a></li>
+            <li><a href="#">Salida</a></li>
           </ul>
         </li>
       </ul>

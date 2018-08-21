@@ -13,7 +13,7 @@ class RegistryUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class RegistryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+             'user_id' => 'required|integer',
+            'people_id' => 'required|integer',
+            'entrada'=> 'required',
+            'salida'=> 'required',
+            'file'=> 'required',
         ];
     }
 }

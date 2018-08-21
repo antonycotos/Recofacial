@@ -1,6 +1,6 @@
 
 @extends('backend.layout')
-@extends('backend.navigation')
+{{-- @extends('backend.navigation') --}}
 @section('content')
 <a>
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

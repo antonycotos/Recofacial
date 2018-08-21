@@ -52,7 +52,7 @@ class NationalityController extends Controller
         $nationality = Nationality::create($request->all());
 
         return redirect()->route('nationality.edit', $nationality->id)
-        ->with('info', 'Tipo de cliente creado con exito');
+        ->with('info', 'Nacionalidad creada con exito');
     }
 
     /**
@@ -98,7 +98,7 @@ class NationalityController extends Controller
         $nationality->fill($request->all())->save();
 
         return redirect()->route('nationality.edit', $nationality->id)
-        ->with('info', 'Tipo de nacionalidad actualizado con exito');
+        ->with('info', 'Nacionalidad actualizado con exito');
     }
 
     /**
