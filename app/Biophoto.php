@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Biophoto extends Model
 {
-    protected $fillable = ['file' ];
+    /**
+	 * Fields that can be mass assigned.
+	 *
+	 * @var array
+	 */
+	protected $fillable = ['file'];
 
     public function people(){
 
