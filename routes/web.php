@@ -30,4 +30,5 @@ Route::get('/backend',function(){
 	Route::resource('nationality','Backend\NationalityController');
 	Route::resource('biophoto','Backend\BiophotoController');
 	Route::resource('people','Backend\PeopleController');
+	Route::resource('users', 'Backend\UserController');
 

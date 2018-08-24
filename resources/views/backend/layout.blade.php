@@ -183,16 +183,15 @@
                 </div>
                 <div class="pull-right">
                   
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" 
-                                                      class="btn btn-default btn-flat">
-                                            Logout
-                                        </a>
+                  <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();" 
+                    class="btn btn-default btn-flat">
+                          Logout</a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+              </form>
                                    
                 </div>
               </li>
@@ -207,7 +206,6 @@
     </nav>
   </header>
 
-<!-- ESTA PARTE CONTIENE EL MENU DEL DASHBOARD  {{-- @yield('content-menu') --}}-->
  
  <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
@@ -243,14 +241,14 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">ADMINISTRACION</li>
         <!-- Optionally, you can add icons to the links{{-- {{ route('nationality.index') }} --}} -->
-        <li class="active"><a href="#"><i class="fa fa-group"></i> <span>Usuarios</span></a></li>
+        <li class="active"><a href="{{ route('users.index') }}"><i class="fa fa-group"></i> <span>Usuarios</span></a></li>
 
         <li><a href="{{ route('nationality.index') }}"><i class="fa fa-vcard-o"></i> <span>Nacionalidad</span></a></li>
         <li><a href="{{ route('biophoto.index') }}"><i class="fa fa-camera-retro fa-lg"></i> <span>Biophoto</span></a></li>
         <li><a href="{{ route('people.index') }}"><i class="fa fa-user-circle-o"></i> <span>Trabajador</span></a></li>
 
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Registro de Asistencia</span>
+          <a href="#"><i class="fa fa-pencil-square-o"></i> <span>Registro de Asistencia</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
