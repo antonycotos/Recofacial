@@ -10,7 +10,8 @@ use App\Biophoto;
 
 class BiophotoController extends Controller
 {
-     public function __construct(){
+    
+    public function __construct(){
         //porteccion se necesita iniciar secion para ver los metodos
         $this->middleware('auth');
     }

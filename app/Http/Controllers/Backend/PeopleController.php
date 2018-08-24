@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PeopleStoreRequest;
+use App\Http\Requests\PeopleUpdateRequest;
+use App\People;
 
 class PeopleController extends Controller
 {
-            public function __construct(){
+    public function __construct(){
         //porteccion se necesita iniciar secion para ver los metodos
         $this->middleware('auth');
     }
@@ -20,9 +23,9 @@ class PeopleController extends Controller
     public function index()
     {
         //listar
-        $peoples = Client::orderBy('id', 'DESC')->where('user_id', auth()->user()->id)->paginate();
+        $people = People::orderBy('id', 'DESC')->paginate();
      
-        return view('backend.people.index', compact('peoples'));
+        return view('backend.people.index', compact('people'));
     }
 
     /**
@@ -36,8 +39,8 @@ class PeopleController extends Controller
 
         $nationalities = Nationality::orderBy('pais', 'ASC')->pluck('pais', 'id');
         $boiphotos = Boiphoto::orderBy('file', 'ASC')->pluck('file', 'id');
-        //$tags = Tag::orderBy('name', 'ASC')->get();
-        return view('backend.people.create', compact('nationalities', 'boiphotos'));
+        
+    return view('backend.people.create', compact('nationalities', 'boiphotos'));
     }
 
     /**
@@ -49,15 +52,15 @@ class PeopleController extends Controller
     public function store(PeopleStoreRequest $request)
     {
         //salva formulario de creacion
-people
-        //tipoclients
-        $people->tipoclients()->attach($request->get('tipoclients'));
+        $people = People::create($request->all());
+        //nationalities
+        $people->nationalities()->attach($request->get('nationalities'));
 
-        //tipodocs
+        //boiphotos
         $people->boiphotos()->attach($request->get('boiphotos'));        
 
         return redirect()->route('people.edit', $people->id)
-        ->with('info', 'people registrado con éxito');
+        ->with('info', 'Trabajador registrado con éxito');
     }
 
     /**
@@ -69,9 +72,9 @@ people
     public function show($id)
     {
         //detalle del registro en bd
-        $client = Client::find($id);
+        $people = People::find($id);
 
-        return view('backend.clients.show', compact('client'));
+        return view('backend.people.show', compact('people'));
     }
 
     /**
@@ -83,12 +86,12 @@ people
     public function edit($id)
     {
         //ves formualrio de edicion
-        $tipoclients = Tipoclient::orderBy('descripcion', 'ASC')->pluck('descripcion', 'id');
-        $tipodocs = Tipodoc::orderBy('documento', 'ASC')->pluck('documento', 'id');
-        //$tags = Tag::orderBy('name', 'ASC')->get();
-        $client = Client::find($id);
+        $nationalities = Nationality::orderBy('pais', 'ASC')->pluck('pais', 'id');
+        $boiphotos = Boiphoto::orderBy('file', 'ASC')->pluck('file', 'id');
 
-        return view('backend.clients.edit', compact('client', 'tipoclients', 'tipodocs'));
+        $people = People::find($id);
+
+    return view('backend.people.edit', compact('people', 'nationalities', 'boiphotos'));
     }
 
     /**
@@ -98,23 +101,19 @@ people
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ClientUpdateRequest $request, $id)
+    public function update(PeopleUpdateRequest $request, $id)
     {
         //actualiza el formulario de edicion
-        $client = Client::find($id);
+        $people = People::find($id);
 
-        $client->fill($request->all())->save();
+        $people->fill($request->all())->save();
 
-        //tipoclients
-        $client->tipoclients()->sync($request->get('tipoclients'));
+        $people->nationalities()->sync($request->get('nationalities'));
 
-        //tipodocs
-        $client->tipodocs()->sync($request->get('tipodocs'));   
-        
-        //tags  $client->tags()->sync($request->get('tags'));
+        $people->boiphotos()->sync($request->get('boiphotos'));   
 
-        return redirect()->route('clients.edit', $client->id)
-        ->with('info', 'Publicación actualizada con éxito');
+    return redirect()->route('people.edit', $people->id)
+        ->with('info', 'Trabajador actualizada con éxito');
     }
 
     /**
@@ -126,8 +125,8 @@ people
     public function destroy($id)
     {
 
-        $client = Client::find($id)->delete();
+        $people = People::find($id)->delete();
 
-        return back()->with('info', 'Eliminada correctamente');
+    return back()->with('info', 'Eliminada correctamente');
     }
 }

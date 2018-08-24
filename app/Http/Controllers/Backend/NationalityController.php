@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,22 +10,20 @@ use App\Nationality;
 
 class NationalityController extends Controller
 {
-    // public function __construct(){
-    //     //porteccion se necesita iniciar secion para ver los metodos
-    //     $this->middleware('auth');
-    // }
+     public function __construct(){
+
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resxource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //listar
+    public function index(){
+
         $nationalities = Nationality::orderBy('id', 'DESC')->paginate();
 
-        //dd($category);
         return view('backend.nationality.index', compact('nationalities'));
     }
 
@@ -36,51 +34,51 @@ class NationalityController extends Controller
      */
     public function create()
     {
-        //ver formulario de creacion
+       
         return view('backend.nationality.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(NationalityStoreRequest $request)
+      * Store a newly created resource in storage.
+      *
+      * @param  \Illuminate\Http\Request  $request
+      * @return \Illuminate\Http\Response
+      */
+     public function store(NationalityStoreRequest $request)
     {
-        //salva formulario de creacion
+    //salva formulario de creacion
         $nationality = Nationality::create($request->all());
 
-        return redirect()->route('nationality.edit', $nationality->id)
-        ->with('info', 'Nacionalidad creada con exito');
+    return redirect()->route('nationality.edit', $nationality->id)
+        ->with('info', 'Nacionalidad creada con éxito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+     /**
+      * Display the specified resource.
+      *
+      * @param  int  $id
+      * @return \Illuminate\Http\Response
+      */
     public function show($id)
     {
-        //detalle del registro en bd
+    //detalle del registro en bd
         $nationality = Nationality::find($id);
 
-        return view('backend.nationality.show', compact('nationality'));
+    return view('backend.nationality.show', compact('nationality'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+     /*
+      * Show the form for editing the specified resource.
+      *
+      * @param  int  $id
+      * @return \Illuminate\Http\Response
+      */ 
     public function edit($id)
     {
-        //ves formualrio de edicion
+        //ves formulario de edicion
         $nationality = Nationality::find($id);
 
-        return view('backend.nationality.edit', compact('nationality'));
+    return view('backend.nationality.edit', compact('nationality'));
     }
 
     /**
@@ -97,8 +95,8 @@ class NationalityController extends Controller
 
         $nationality->fill($request->all())->save();
 
-        return redirect()->route('nationality.edit', $nationality->id)
-        ->with('info', 'Nacionalidad actualizado con exito');
+    return redirect()->route('nationality.edit', $nationality->id)
+        ->with('info', 'Nacionalidad actualizado con éxito');
     }
 
     /**
@@ -111,6 +109,6 @@ class NationalityController extends Controller
     {
         $nationality = Nationality::find($id)->delete();
 
-        return back()->with('info', 'Eliminada correctamente');
+    return back()->with('info', 'Eliminada correctamente');
     }
 }

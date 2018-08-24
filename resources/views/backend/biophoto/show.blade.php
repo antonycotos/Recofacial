@@ -1,5 +1,4 @@
-
-@extends('backend::page')
+@extends('backend.layout')
 
 @section('content')
 	

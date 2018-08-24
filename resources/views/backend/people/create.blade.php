@@ -1,5 +1,5 @@
 
-@extends('backend::page')
+@extends('backend.layout')
 
 @section('content')
 	
@@ -11,9 +11,9 @@
 						Crear Trabajador
 					</div>
 						<div class="panel-body">
-							{!! Form::open(['route' => 'peoples.store']) !!}
+							{!! Form::open(['route' => 'people.store']) !!}
 
-							@include('backend.peoples.partials.from')
+							@include('backend.people.partials.from')
 							{!! Form::close() !!}
 						</div>
 				</div>

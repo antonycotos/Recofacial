@@ -24,13 +24,10 @@ Route::get('/backend',function(){
 	return view ('backend.dashboard');
 });
 
-//Rutas del Frontend
-    Route::get('nationality/{slug}', 'Frontend\PageController@nationality')->name('nationality');
-    Route::get('biophoto/{slug}', 'Frontend\PageController@biophoto')->name('biophoto');
-    Route::get('people/{slug}', 'Frontend\PageController@people')->name('people');
+
 
 //Rutas del Backend
-	Route::resource('nationality','backend\NationalityController');
-	Route::resource('biophoto','Backend\NationalityController');
-	Route::resource('people','Backend\NationalityController');
+	Route::resource('nationality','Backend\NationalityController');
+	Route::resource('biophoto','Backend\BiophotoController');
+	Route::resource('people','Backend\PeopleController');
 

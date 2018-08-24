@@ -1,5 +1,5 @@
 
-@extends('backend::page')
+@extends('backend.layout')
 
 @section('content')
 	
@@ -9,7 +9,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						Lista de los trabajadores
-						<a href="{{ route('peoples.create') }}" class="btn btn-sm btn-primary pull-right">
+						<a href="{{ route('people.create') }}" class="btn btn-sm btn-primary pull-right">
 							Crear
 						</a>
 					</div>
@@ -23,22 +23,22 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($peoples as $people)
+								@foreach($people as $people)
 								<tr>
 									<td>{{ $people->id }}</td>
 									<td>{{ $people->pais }}</td>
 									<td width="10px">
-										<a href="{{ route('peoples.show', $people->id) }}" class="btn btn-sm btn-default">
+										<a href="{{ route('people.show', $people->id) }}" class="btn btn-sm btn-default">
 											ver
 										</a>
 									</td>
 									<td width="10px">
-										<a href="{{ route('peoples.edit', $people->id) }}" class="btn btn-sm btn-default">
+										<a href="{{ route('people.edit', $people->id) }}" class="btn btn-sm btn-default">
 											editar
 										</a>
 									</td>
 									<td width="10px">
-										{!! Form::open(['route' => ['peoples.destroy', $people->id], 'method' => 'DELETE']) !!}
+										{!! Form::open(['route' => ['people.destroy', $people->id], 'method' => 'DELETE']) !!}
 										<button class="btn btn-sm btn-danger">
 											Eliminar
 										</button>
@@ -48,7 +48,7 @@
 								@endforeach
 							</tbody>
 						</table>
-						{{ $peoples->render() }}
+						{{ $people->render() }}
 					</div>
 				</div>
 			</div>

@@ -1,9 +1,7 @@
-
-@extends('backend::page')
+@extends('backend.layout')
 
 @section('content')
-	
-	<div class="container">
+<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
@@ -11,13 +9,13 @@
 						Editar Nacionalidad
 					</div>
 						<div class="panel-body">
-							{!! Form::model($nationality, ['route' => ['nationalities.update', $nationality->id], 'method' => 'PUT']) !!}
-
-							@include('backend.nationalities.partials.from')
-							{!! Form::close() !!}
+							{{-- {!! Form::model($nationality, ['route' => ['nationalities.update', $nationality->id], 'method' => 'PUT']) !!}  --}}
+						<button href="{{ route('nationality.update') }}" class="btn btn-sm btn-primary pull-right"></button>
+							@include('backend.nationality.partials.from')
+							
 						</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 @endsection

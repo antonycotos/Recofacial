@@ -1,5 +1,5 @@
 
-@extends('backend::page')
+@extends('backend.layout')
 
 @section('content')
 	
@@ -11,9 +11,9 @@
 						Editar Trabajador
 					</div>
 						<div class="panel-body">
-							{!! Form::model($people, ['route' => ['peoples.update', $people->id], 'method' => 'PUT']) !!}
+							{!! Form::model($people, ['route' => ['people.update', $people->id], 'method' => 'PUT']) !!}
 
-							@include('backend.peoples.partials.from')
+							@include('backend.people.partials.from')
 							{!! Form::close() !!}
 						</div>
 				</div>

@@ -32,7 +32,7 @@ class PeopleStoreRequest extends FormRequest
             'dni'=> 'required|string|max:8',
             'direccion'=> 'required',
             'celular'=> 'required',
-        'correo'=> 'required|string|email|max:180',
+            'correo'=> 'required|string|email|max:180',
             'rol'=> 'required',
         ];
     }

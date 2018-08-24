@@ -1,5 +1,5 @@
 
-@extends('backend::page')
+@extends('backend.layout')
 
 @section('content')
 	
@@ -11,10 +11,13 @@
 						Crear Fotografias del Trabajador
 					</div>
 						<div class="panel-body">
-							{!! Form::open(['route' => 'biophotos.store']) !!}
 
-							@include('backend.biophotos.partials.from')
-							{!! Form::close() !!}
+							<a href="{{ route('biophoto.store') }}" class="btn btn-sm btn-primary pull-right">
+								After
+							</a>
+
+							@include('backend.biophoto.partials.from')							
+							
 						</div>
 				</div>
 			</div>

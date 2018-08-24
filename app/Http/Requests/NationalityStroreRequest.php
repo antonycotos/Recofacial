@@ -24,8 +24,8 @@ class NationalityStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'pais'=> 'required',
-            'ciudad'=> 'required',
+            'pais'=> 'required|string|max:50',
+            'ciudad'=> 'required|string|max:50',
         ];
     }
 }

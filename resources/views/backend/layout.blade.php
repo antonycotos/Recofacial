@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title>AdminLTE</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -22,37 +22,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="{{asset('admin/dist/css/skins/skin-blue.min.css')}}">
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -271,13 +246,13 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
+        <li class="header">ADMINISTRACION</li>
         <!-- Optionally, you can add icons to the links{{-- {{ route('nationality.index') }} --}} -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
 
-        <li><a href="#"><i class="fa fa-vcard-o"></i> <span>Nacionalidad</span></a></li>
-        <li><a href="#"><i class="fa fa-camera-retro fa-lg"></i> <span>Biophoto</span></a></li>
-        <li><a href="#"><i class="fa fa-user-circle-o"></i> <span>Trabajador</span></a></li>
+        <li><a href="{{ route('nationality.index') }}"><i class="fa fa-vcard-o"></i> <span>Nacionalidad</span></a></li>
+        <li><a href="{{ route('biophoto.index') }}"><i class="fa fa-camera-retro fa-lg"></i> <span>Biophoto</span></a></li>
+        <li><a href="{{ route('people.index') }}"><i class="fa fa-user-circle-o"></i> <span>Trabajador</span></a></li>
 
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Registro de Asistencia</span>
@@ -296,16 +271,16 @@ desired effect
     <!-- /.sidebar -->
   </aside>
 
-@endsection
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
+     {{--  <h1>
         Page Header
         <small>Optional description</small>
-      </h1>
+      </h1> --}}
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
         <li class="active">Here</li>
@@ -331,7 +306,7 @@ desired effect
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2018 <a href="#">Company</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

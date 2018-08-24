@@ -1,5 +1,5 @@
 
-@extends('backend::page')
+@extends('backend.layout')
 
 @section('content')
 	
@@ -11,10 +11,8 @@
 						Editar Fotografias del Trabajador
 					</div>
 						<div class="panel-body">
-							{!! Form::model($biophoto, ['route' => ['biophotos.update', $biophoto->id], 'method' => 'PUT']) !!}
-
-							@include('backend.biophotos.partials.from')
-							{!! Form::close() !!}
+							<button href="{{ route('biophoto.update') }}" class="btn btn-sm btn-primary pull-right"></button>
+							@include('backend.biophoto.partials.from')
 						</div>
 				</div>
 			</div>
