@@ -1,5 +1,7 @@
 
 @section('content-menu')
+ <!-- ESTA PARTE CONTIENE EL MENU DEL DASHBOARD  {{-- @yield('content-menu') --}}-->
+ 
  <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
 
@@ -12,7 +14,7 @@
           <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{ Auth::user()->name }}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -32,13 +34,13 @@
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
+        <li class="header">ADMINISTRACION</li>
         <!-- Optionally, you can add icons to the links{{-- {{ route('nationality.index') }} --}} -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
+        <li class="active"><a href="#"><i class="fa fa-group"></i> <span>Usuarios</span></a></li>
 
-        <li><a href="{{ route('nationalities.index')}}"><i class="fa fa-vcard-o"></i> <span>Nacionalidad</span></a></li>
-        <li><a href="{{ route('biophotos.index')}}"><i class="fa fa-camera-retro fa-lg"></i> <span>Biophoto</span></a></li>
-        <li><a href="{{ route('people.index')}}"><i class="fa fa-user-circle-o"></i> <span>Trabajador</span></a></li>
+        <li><a href="{{ route('nationality.index') }}"><i class="fa fa-vcard-o"></i> <span>Nacionalidad</span></a></li>
+        <li><a href="{{ route('biophoto.index') }}"><i class="fa fa-camera-retro fa-lg"></i> <span>Biophoto</span></a></li>
+        <li><a href="{{ route('people.index') }}"><i class="fa fa-user-circle-o"></i> <span>Trabajador</span></a></li>
 
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Registro de Asistencia</span>

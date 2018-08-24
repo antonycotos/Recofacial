@@ -9,8 +9,9 @@
 						Editar Nacionalidad
 					</div>
 						<div class="panel-body">
-							{{-- {!! Form::model($nationality, ['route' => ['nationalities.update', $nationality->id], 'method' => 'PUT']) !!}  --}}
-						<button href="{{ route('nationality.update') }}" class="btn btn-sm btn-primary pull-right"></button>
+
+						<button href="{{ route('nationalities.update') }}" class="btn btn-sm btn-primary pull-right"></button>
+
 							@include('backend.nationality.partials.from')
 							
 						</div>

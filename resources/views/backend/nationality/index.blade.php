@@ -39,11 +39,7 @@
 										</a>
 									</td>
 									<td width="10px">
-										{{-- {!! Form::open(['route' => ['nationalities.destroy', $nationality->id], 'method' => 'DELETE']) !!} --}}
-										<a href="{{ route('nationality.destroy', $nationality->id) }}" class="btn btn-sm btn-danger">
-											editar
-										</a>
-										<button class="btn btn-sm btn-danger">
+										<button href="{{ route('nationality.destroy', $nationality->id) }}" class="btn btn-sm btn-danger">
 											Eliminar
 										</button>
 										

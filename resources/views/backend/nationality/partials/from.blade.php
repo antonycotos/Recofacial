@@ -1,6 +1,8 @@
 
 <form action="{{ route('nationality.store') }}" id="frmreg" enctype="multipart/form-data" method="post">
-
+    
+    {{ csrf_field() }}
+    
   <div class="form-group">
     <label for="pais">* Ingrese su Pais:</label>
     <input type="text" class="form-control" id="pais"   name="pais" title="Solo alfanumericos" placeholder="Ingrese pais del trabajador" required>

@@ -10,9 +10,7 @@
 						Crear Nacionalidad
 					</div>
 						<div class="panel-body">
-							<a href="{{ route('nationality.store') }}" class="btn btn-sm btn-primary pull-right">
-								After
-							</a>
+							<a href="{{ route('nationality.store') }}" class="btn btn-sm btn-primary pull-right"> <<< </a>
 
 							@include('backend.nationality.partials.from')							
 							

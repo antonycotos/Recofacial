@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -17,9 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('admin/bower_components/Ionicons/css/ionicons.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('admin/dist/css/AdminLTE.min.css')}}">
-  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect. -->
+  
   <link rel="stylesheet" href="{{asset('admin/dist/css/skins/skin-blue.min.css')}}">
 
 
@@ -226,7 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{ Auth::user()->name }}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -248,7 +243,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">ADMINISTRACION</li>
         <!-- Optionally, you can add icons to the links{{-- {{ route('nationality.index') }} --}} -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Usuarios</span></a></li>
+        <li class="active"><a href="#"><i class="fa fa-group"></i> <span>Usuarios</span></a></li>
 
         <li><a href="{{ route('nationality.index') }}"><i class="fa fa-vcard-o"></i> <span>Nacionalidad</span></a></li>
         <li><a href="{{ route('biophoto.index') }}"><i class="fa fa-camera-retro fa-lg"></i> <span>Biophoto</span></a></li>
