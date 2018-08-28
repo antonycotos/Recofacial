@@ -57,6 +57,7 @@ class PeopleController extends Controller
         $people = People::create($request->all());
         //nationalities
         $people->nationalities()->attach($request->get('nationalities'));
+        //nationalities::all();
 
         //boiphotos
         $people->biophotos()->attach($request->get('biophotos'));        

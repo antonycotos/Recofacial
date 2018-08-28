@@ -1,4 +1,5 @@
-    <form action="{{ route('people.store') }}" id="frmreg" enctype="multipart/form-data" method="post">
+  
+  <form action="{{ route('people.store') }}" id="frmreg" enctype="multipart/form-data" method="post">
 
           {{ csrf_field() }}
             
@@ -6,22 +7,20 @@
             <div class="form-group">
               <label for="nationality_id">Nacionalidad</label>
               <select class="form-control" id="nationality_id" name="nationality_id">
-              @foreach($nationalities as $nationality)
-                <option value="{{ $nationality->id }}">{{ $nationality->pais }}</option>
+              @foreach ($nationalities as $id => $pais)
+                <option value="{{$id}}">{{$pais}}</option>
               @endforeach
               </select>
             </div>
-            
-            
-           
-      {{--       <div class="form-group">
+
+              <div class="form-group">
               <label for="biophoto_id">Imagen</label>
               <select class="form-control" id="biophoto_id" name="biophoto_id">
-               @foreach($biophotos as $biophoto)
-                <option value="{{ $biophoto->id }}" >{{ $biophoto->file }}</option>
+               @foreach ($biophotos as $id => $file)
+                <option value="{{$id}}" >{{ $file }}</option>
               @endforeach
             </select>
-            </div> --}}
+            </div> 
             
 
             <div class="form-group">
