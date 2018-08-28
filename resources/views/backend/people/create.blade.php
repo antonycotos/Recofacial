@@ -11,10 +11,10 @@
 						Crear Trabajador
 					</div>
 						<div class="panel-body">
-							{!! Form::open(['route' => 'people.store']) !!}
+							<a href="{{ route('people.store') }}" class="btn btn-sm btn-primary pull-right"> <<< </a>
 
 							@include('backend.people.partials.from')
-							{!! Form::close() !!}
+							
 						</div>
 				</div>
 			</div>

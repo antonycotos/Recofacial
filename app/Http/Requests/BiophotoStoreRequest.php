@@ -24,7 +24,12 @@ class BiophotoStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'file'=> 'required',
+            
         ];
+
+        if($this->get('file'))
+            $rules = array_merge($rules, ['file' => 'mimes:jpg,jpeg,png']);
+        
+        return $rules;
     }
 }

@@ -26,7 +26,8 @@
 								@foreach($biophotos as $biophoto)
 								<tr>
 									<td>{{ $biophoto->id }}</td>
-									{{-- <td>{{ $biophoto->pais }}</td> --}}
+									<td>{{ $biophoto->file }}</td>
+									
 									<td width="10px">
 										<a href="{{ route('biophoto.show', $biophoto->id) }}" class="btn btn-sm btn-default">
 											ver
@@ -38,11 +39,9 @@
 										</a>
 									</td>
 									<td width="10px">
-										{!! Form::open(['route' => ['biophoto.destroy', $biophoto->id], 'method' => 'DELETE']) !!}
-										<button class="btn btn-sm btn-danger">
+											<button href="{{ route('biophoto.destroy', $biophoto->id) }}" class="btn btn-sm btn-danger">
 											Eliminar
 										</button>
-										{!! Form::close() !!}
 									</td>
 								</tr>
 								@endforeach

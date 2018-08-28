@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PeopleStoreRequest;
 use App\Http\Requests\PeopleUpdateRequest;
 use App\People;
+use App\Nationality;
+use App\Biophoto;
 
 class PeopleController extends Controller
 {
@@ -38,9 +40,9 @@ class PeopleController extends Controller
         //ver formulario de creacion
 
         $nationalities = Nationality::orderBy('pais', 'ASC')->pluck('pais', 'id');
-        $boiphotos = Boiphoto::orderBy('file', 'ASC')->pluck('file', 'id');
+        $biophotos = Biophoto::orderBy('file', 'ASC')->pluck('file', 'id');
         
-    return view('backend.people.create', compact('nationalities', 'boiphotos'));
+    return view('backend.people.create', compact('nationalities', 'biophotos'));
     }
 
     /**
@@ -57,7 +59,7 @@ class PeopleController extends Controller
         $people->nationalities()->attach($request->get('nationalities'));
 
         //boiphotos
-        $people->boiphotos()->attach($request->get('boiphotos'));        
+        $people->biophotos()->attach($request->get('biophotos'));        
 
         return redirect()->route('people.edit', $people->id)
         ->with('info', 'Trabajador registrado con éxito');
@@ -87,11 +89,11 @@ class PeopleController extends Controller
     {
         //ves formualrio de edicion
         $nationalities = Nationality::orderBy('pais', 'ASC')->pluck('pais', 'id');
-        $boiphotos = Boiphoto::orderBy('file', 'ASC')->pluck('file', 'id');
+        $biophotos = Biophoto::orderBy('file', 'ASC')->pluck('file', 'id');
 
         $people = People::find($id);
 
-    return view('backend.people.edit', compact('people', 'nationalities', 'boiphotos'));
+    return view('backend.people.edit', compact('people', 'nationalities', 'biophotos'));
     }
 
     /**
@@ -110,7 +112,7 @@ class PeopleController extends Controller
 
         $people->nationalities()->sync($request->get('nationalities'));
 
-        $people->boiphotos()->sync($request->get('boiphotos'));   
+        $people->biophotos()->sync($request->get('biophotos'));   
 
     return redirect()->route('people.edit', $people->id)
         ->with('info', 'Trabajador actualizada con éxito');

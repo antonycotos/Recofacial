@@ -52,6 +52,12 @@ class BiophotoController extends Controller
         //salva formulario de creacion
         $biophoto = Biophoto::create($request->all());
 
+         //imagen
+        if($request->file('file')){
+            $path = Storage::disk('public')->put('image', $request->file('file'));
+            $biophoto->fill(['file' => asset($path)])->save();
+        }
+
         return redirect()->route('biophotos.edit', $biophoto->id)
         ->with('info', 'Tipo de biophoto creado con exito');
     }
@@ -98,6 +104,12 @@ class BiophotoController extends Controller
 
         $biophoto->fill($request->all())->save();
 
+           //imagen
+        if($request->file('file')){
+            $path = Storage::disk('public')->put('image', $request->file('file'));
+            $biophoto->fill(['file' => asset($path)])->save();
+        }
+        
         return redirect()->route('biophoto.edit', $biophoto->id)
         ->with('info', 'Tipo de biophoto actualizado con exito');
     }

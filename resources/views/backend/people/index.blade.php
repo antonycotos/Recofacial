@@ -38,11 +38,9 @@
 										</a>
 									</td>
 									<td width="10px">
-										{!! Form::open(['route' => ['people.destroy', $people->id], 'method' => 'DELETE']) !!}
-										<button class="btn btn-sm btn-danger">
+										<button href="{{ route('people.destroy', $people->id) }}" class="btn btn-sm btn-danger">
 											Eliminar
 										</button>
-										{!! Form::close() !!}
 									</td>
 								</tr>
 								@endforeach

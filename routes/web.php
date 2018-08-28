@@ -32,3 +32,8 @@ Route::get('/backend',function(){
 	Route::resource('people','Backend\PeopleController');
 	Route::resource('users', 'Backend\UserController');
 
+
+
+Route::get('/camara',function(){
+	return view ('backend.camara');
+});

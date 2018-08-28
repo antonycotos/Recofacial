@@ -11,10 +11,10 @@
 						Editar Trabajador
 					</div>
 						<div class="panel-body">
-							{!! Form::model($people, ['route' => ['people.update', $people->id], 'method' => 'PUT']) !!}
+							<button href="{{ route('people.update') }}" class="btn btn-sm btn-primary pull-right"></button>
 
 							@include('backend.people.partials.from')
-							{!! Form::close() !!}
+							
 						</div>
 				</div>
 			</div>
