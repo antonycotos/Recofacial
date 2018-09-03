@@ -56,11 +56,11 @@ class PeopleController extends Controller
         //salva formulario de creacion
         $people = People::create($request->all());
         //nationalities
-        $people->nationalities()->attach($request->get('nationalities'));
+        $people->nationality()->attach($request->get('nationalities'));
         //nationalities::all();
 
         //boiphotos
-        $people->biophotos()->attach($request->get('biophotos'));        
+        $people->biophoto()->attach($request->get('biophotos'));        
 
         return redirect()->route('people.edit', $people->id)
         ->with('info', 'Trabajador registrado con éxito');
@@ -111,9 +111,9 @@ class PeopleController extends Controller
 
         $people->fill($request->all())->save();
 
-        $people->nationalities()->sync($request->get('nationalities'));
+        $people->nationality()->sync($request->get('nationalities'));
 
-        $people->biophotos()->sync($request->get('biophotos'));   
+        $people->biophoto()->sync($request->get('biophotos'));   
 
     return redirect()->route('people.edit', $people->id)
         ->with('info', 'Trabajador actualizada con éxito');

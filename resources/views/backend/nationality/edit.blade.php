@@ -10,7 +10,7 @@
 					</div>
 						<div class="panel-body">
 
-						<button href="{{ route('nationalities.update') }}" class="btn btn-sm btn-primary pull-right"></button>
+						<button href="{{ route('nationality.update') }}" class="btn btn-sm btn-primary pull-right"></button>
 
 							@include('backend.nationality.partials.from')
 							

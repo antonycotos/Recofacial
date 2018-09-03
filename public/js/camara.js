@@ -1,67 +1,157 @@
-/*
-    Tomar una fotografía y guardarla en un archivo
-    @date 2017-11-22
-    @author parzibyte
-    @web parzibyte.me/blog
-*/
-function tieneSoporteUserMedia() {
-    return !!(navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
+// Obtenemos todos los elementos que necesitaremos
+var video = document.querySelector('#camera-stream'),
+    image = document.querySelector('#snap'),
+    start_camera = document.querySelector('#start-camera'),
+    controls = document.querySelector('.controls'),
+    take_photo_btn = document.querySelector('#take-photo'),
+    delete_photo_btn = document.querySelector('#delete-photo'),
+    download_photo_btn = document.querySelector('#download-photo'),
+    error_message = document.querySelector('#error-message');
+ 
+ 
+// Utilizamos la funcion getUserMedia para obtener la salida de la webcam
+navigator.getMedia = ( navigator.getUserMedia ||
+                      navigator.webkitGetUserMedia ||
+                      navigator.mozGetUserMedia ||
+                      navigator.msGetUserMedia);
+ 
+ 
+if(!navigator.getMedia){
+  displayErrorMessage("Tu navegador no soporta la funcion getMedia.");
 }
-
-function _getUserMedia() {
-    return (navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia).apply(navigator, arguments);
+else{
+ 
+  // Solicitamos la camara
+  navigator.getMedia(
+    {
+      video: true
+    },
+    function(stream){
+ 
+      // A nuestro componente video le establecemos el src al stream de la webcam
+      video.src = window.URL.createObjectURL(stream);
+ 
+      // Reproducimos
+      video.play();
+      video.onplay = function() {
+        showVideo();
+      };
+ 
+    },
+    function(err){
+      displayErrorMessage("Ocurrio un error al obtener el stream de la webcam: " + err.name, err);
+    }
+  );
+ 
 }
-
-// Declaramos elementos del DOM
-var $video = document.getElementById("video"),
-    $canvas = document.getElementById("canvas"),
-    $boton = document.getElementById("boton"),
-    $estado = document.getElementById("estado");
-if (tieneSoporteUserMedia()) {
-    _getUserMedia({
-            video: true
-        },
-        function(stream) {
-            console.log("Permiso concedido");
-            $video.srcObject = stream;
-            $video.play();
-
-            //Escuchar el click
-            $boton.addEventListener("click", function() {
-
-                //Pausar reproducción
-                $video.pause();
-
-                //Obtener contexto del canvas y dibujar sobre él
-                var contexto = $canvas.getContext("2d");
-                $canvas.width = $video.videoWidth;
-                $canvas.height = $video.videoHeight;
-                contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
-
-                var foto = $canvas.toDataURL(); //Esta es la foto, en base 64
-                $estado.innerHTML = "Enviando foto. Por favor, espera...";
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "./guardar_foto.php", true);
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhr.send(encodeURIComponent(foto)); //Codificar y enviar
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                        console.log("La foto fue enviada correctamente");
-                        console.log(xhr);
-                        $estado.innerHTML = "Foto guardada con éxito. Puedes verla <a target='_blank' href='./" + xhr.responseText + "'> aquí</a>";
-                    }
-                }
-
-                //Reanudar reproducción
-                $video.play();
-            });
-        },
-        function(error) {
-            console.log("Permiso denegado o error: ", error);
-            $estado.innerHTML = "No se puede acceder a la cámara, o no diste permiso.";
-        });
-} else {
-    alert("Lo siento. Tu navegador no soporta esta característica");
-    $estado.innerHTML = "Parece que tu navegador no soporta esta característica. Intenta actualizarlo.";
+ 
+ 
+ 
+// En los moviles no se puede reproducir el video automaticamente, programamos funcionamiento del boton inicar camara
+start_camera.addEventListener("click", function(e){
+ 
+  e.preventDefault();
+ 
+  // Reproducimos manualmente
+  video.play();
+  showVideo();
+ 
+});
+ 
+ 
+take_photo_btn.addEventListener("click", function(e){
+ 
+  e.preventDefault();
+ 
+  var snap = takeSnapshot();
+ 
+  // Mostramos la imagen
+  image.setAttribute('src', snap);
+  image.classList.add("visible");
+ 
+  // Activamos los botones de eliminar foto y descargar foto
+  delete_photo_btn.classList.remove("disabled");
+  download_photo_btn.classList.remove("disabled");
+ 
+  // Establecemos el atributo href para el boton de descargar imagen
+  download_photo_btn.href = snap;
+ 
+  // Pausamos el stream de video de la webcam
+  video.pause();
+ 
+});
+ 
+ 
+delete_photo_btn.addEventListener("click", function(e){
+ 
+  e.preventDefault();
+ 
+  // Ocultamos la imagen
+  image.setAttribute('src', "");
+  image.classList.remove("visible");
+ 
+  // Deshabilitamos botones de descargar y eliminar foto
+  delete_photo_btn.classList.add("disabled");
+  download_photo_btn.classList.add("disabled");
+ 
+  // Reanudamos la reproduccion de la webcam
+  video.play();
+ 
+});
+ 
+ 
+ 
+function showVideo(){
+  // Mostramos el stream de la webcam y los controles
+ 
+  hideUI();
+  video.classList.add("visible");
+  controls.classList.add("visible");
+}
+ 
+ 
+function takeSnapshot(){
+ 
+  var hidden_canvas = document.querySelector('canvas'),
+      context = hidden_canvas.getContext('2d');
+ 
+  var width = video.videoWidth,
+      height = video.videoHeight;
+ 
+  if (width && height) {
+ 
+    // Configuramos el canvas con las mismas dimensiones que el video
+    hidden_canvas.width = width;
+    hidden_canvas.height = height;
+ 
+    // Hacemos una copia
+    context.drawImage(video, 0, 0, width, height);
+ 
+    // Convertimos la imagen del canvas en datarurl
+    return hidden_canvas.toDataURL('image/png');
+  }
+}
+ 
+ 
+function displayErrorMessage(error_msg, error){
+  error = error || "";
+  if(error){
+    console.log(error);
+  }
+ 
+  error_message.innerText = error_msg;
+ 
+  hideUI();
+  error_message.classList.add("visible");
+}
+ 
+ 
+function hideUI(){
+  // Limpiamos
+ 
+  controls.classList.remove("visible");
+  start_camera.classList.remove("visible");
+  video.classList.remove("visible");
+  snap.classList.remove("visible");
+  error_message.classList.remove("visible");
 }

@@ -1,4 +1,4 @@
-{{-- url(config('adminlte.register_url', 'register'))--}}
+
 <form action="{{ route('nationality.store') }}" id="frmreg" enctype="multipart/form-data" method="post">
     
     {{ csrf_field() }}
